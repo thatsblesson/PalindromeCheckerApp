@@ -13,13 +13,13 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a word or sentence: ");
         String input = sc.nextLine();
 
-        // Remove spaces and convert to lowercase
-        String word = input.replaceAll("\\s+", "").toLowerCase();
+        // Remove everything except letters and numbers
+        String word = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
         String reversed = "";
 
         for (int i = word.length() - 1; i >= 0; i--) {
-            reversed = reversed + word.charAt(i);
+            reversed += word.charAt(i);
         }
 
         if (word.equals(reversed)) {
