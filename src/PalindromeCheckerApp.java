@@ -2,31 +2,68 @@ import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
+    // Preprocess the string
+    public static String normalize(String input) {
+        // remove spaces and convert to lowercase
+        return input.replaceAll("\\s+", "").toLowerCase();
+    }
+
+    // Palindrome logic (two-pointer)
+    public static boolean isPalindrome(String word) {
+
+        int left = 0;
+        int right = word.length() - 1;
+
+        while (left < right) {
+            if (word.charAt(left) != word.charAt(right))
+                return false;
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        int choice;
 
-        System.out.println("==================================");
-        System.out.println("   WELCOME TO PALINDROME CHECKER  ");
-        System.out.println("==================================");
+        do {
+            System.out.println("\n==================================");
+            System.out.println(" PALINDROME CHECKER (NORMALIZATION)");
+            System.out.println("==================================");
+            System.out.println("1. Check Palindrome (Ignore case & spaces)");
+            System.out.println("2. Exit");
+            System.out.print("Enter your choice: ");
 
-        System.out.print("Enter a word or sentence: ");
-        String input = sc.nextLine();
+            choice = sc.nextInt();
+            sc.nextLine();
 
-        // Remove spaces and convert to lowercase
-        String word = input.replaceAll("\\s+", "").toLowerCase();
+            switch (choice) {
 
-        String reversed = "";
+                case 1:
+                    System.out.print("Enter a sentence: ");
+                    String input = sc.nextLine();
 
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversed = reversed + word.charAt(i);
-        }
+                    String cleaned = normalize(input);
 
-        if (word.equals(reversed)) {
-            System.out.println("It is a Palindrome.");
-        } else {
-            System.out.println("It is NOT a Palindrome.");
-        }
+                    if (isPalindrome(cleaned))
+                        System.out.println("It is a Palindrome.");
+                    else
+                        System.out.println("It is NOT a Palindrome.");
+                    break;
+
+                case 2:
+                    System.out.println("Thank you for using Palindrome Checker!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 2);
 
         sc.close();
     }
