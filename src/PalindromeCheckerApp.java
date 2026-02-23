@@ -10,8 +10,11 @@ public class PalindromeCheckerApp {
         System.out.println("   WELCOME TO PALINDROME CHECKER  ");
         System.out.println("==================================");
 
-        System.out.print("Enter a word: ");
-        String word = sc.nextLine();
+        System.out.print("Enter a word or sentence: ");
+        String input = sc.nextLine();
+
+        // Remove spaces and convert to lowercase
+        String word = input.replaceAll("\\s+", "").toLowerCase();
 
         String reversed = "";
 
@@ -19,10 +22,10 @@ public class PalindromeCheckerApp {
             reversed = reversed + word.charAt(i);
         }
 
-        if (word.equalsIgnoreCase(reversed)) {
-            System.out.println(word + " is a Palindrome.");
+        if (word.equals(reversed)) {
+            System.out.println("It is a Palindrome.");
         } else {
-            System.out.println(word + " is NOT a Palindrome.");
+            System.out.println("It is NOT a Palindrome.");
         }
 
         sc.close();
